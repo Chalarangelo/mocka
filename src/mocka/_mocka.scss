@@ -1,95 +1,84 @@
-.mocka-container{
-  width: 100%;
-  position: relative;
-  height: 9.5rem;
-}
 
-.mocka-media {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  background: #bdbdbd;
-  width: 4rem;
-  height: 4rem;
-  &:before {
-    position: absolute;
-    top: 2rem;
-    left: 0.75rem;
-    border-radius: 1rem;
-    background: #616161;
-    width: 0.5rem;
-    height: 0.5rem;
-    content: '';
-    animation: mocka-dot-a 1.8s ease infinite;
-  }
-  &:after {
-    position: absolute;
-    top: 2rem;
-    left: 2.75rem;
-    border-radius: 1rem;
-    background: red;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: #616161;
-    content: '';
-    animation: mocka-dot-c 1.8s ease infinite;
-  }
-}
+@mixin mocka() {
+	.#{$mocka-prefix}-#{$mocka-container} {
+		width: 100%;
+		position: relative;
+		height: 9.5rem;
+	}
+	.#{$mocka-prefix}-#{$mocka-media}, .#{$mocka-prefix}-#{$mocka-heading}, .#{$mocka-prefix}-#{$mocka-text} {
+		&, &:before, &:after {
+			position: absolute;
+		  background: #bdbdbd;
+		}
+	}
 
-.mocka-heading {
-  position: absolute;
-  left: 5rem;
-  top: 1.125rem;
-  width: calc(100% - 5.5rem);
-  background: #bdbdbd;
-  height: 0.875rem;
-  &:before {
-    position: absolute;
-    content: '';
-    background: #bdbdbd;
-    width: 85%;
-    top: 1.5rem;
-    height: 0.875rem;
-  }
-  &:after {
-    position: absolute;
-    top: 1.375rem;
-    left: -2.75rem;
-    border-radius: 1rem;
-    background: red;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: #616161;
-    content: '';
-    animation: mocka-dot-b 1.8s ease infinite;
-  }
+	.#{$mocka-prefix}-#{$mocka-media} {
+		top: $mocka-media-top;
+		left: $mocka-media-left;
+		width: $mocka-media-width;
+		height: $mocka-media-height;
+		&:before, &:after {
+			top: $mocka-dots-top;
+			border-radius: $mocka-dots-border-radius;
+			background: $mocka-dots-background;
+			height: $mocka-dots-height;
+			width: $mock-dots-width;
+			content: '';
+		}
+		&:before {
+			left: $mocka-dots-left-margin;
+			animation: mocka-dot-a 1.8s ease infinite;
+		}
+		&:after {
+			left: 2.75rem;
+			animation: mocka-dot-c 1.8s ease infinite;
+		}
+	}
+	.#{$mocka-prefix}-#{$mocka-heading} {
+		left: $mocka-heading-left;
+		top: $mocka-heading-top;
+		width: calc(100% - $mocka-heading-offset);
+		&, &:before {
+			height: $mocka-heading-height;
+		}
+		&:before, &:after {
+			content: '';
+		}
+		&:before {
+			width: $mocka-heading-subline-width;
+			top: $mocka-heading-subline-top;
+		}
+		&:after {
+			top: 1.375rem;
+	    left: -2.75rem;
+			border-radius: $mocka-dots-border-radius;
+			background: $mocka-dots-background;
+			height: $mocka-dots-height;
+			width: $mock-dots-width;
+	    animation: mocka-dot-b 1.8s ease infinite;
+		}
+	}
+	.#{$mocka-prefix}-#{$mocka-text} {
+		top: $mocka-text-top;
+		left: $mocka-text-left;
+		width: calc(85% - $mocka-text-paddings);
+		&, &:before, &:after {
+			height: $mocka-text-height;
+		}
+		&:before, &:after {
+			content: '';
+		}
+		&:before {
+			top: 1.25rem;
+			width: calc(120% - $mocka-text-paddings);
+		}
+		&:after {
+			top: 2.5rem;
+			width: calc(95% -  - $mocka-text-paddings);
+		}
+	}
 }
-
-.mocka-text {
-  position: absolute;
-  top: 5.25rem;
-  left: 0.5rem;
-  background: #bdbdbd;
-  width: calc(85% - 1rem);
-  height: 0.75rem;
-  &:before {
-    position: absolute;
-    content: '';
-    width: calc(120% - 1rem);
-    top: 1.25rem;
-    height: 0.75rem;
-    background: #bdbdbd;
-  }
-  &:after {
-    position: absolute;
-    content: '';
-    width: calc(95% - 1rem);
-    top: 2.5rem;
-    height: 0.75rem;
-    background: #bdbdbd;
-  }
-}
-
+/* TODO: Add -webkit- keyframes */
 @keyframes mocka-dot-a {
   8% {
     transform: translateY(0rem);
