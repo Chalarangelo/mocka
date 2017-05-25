@@ -1,32 +1,169 @@
 
-@mixin mocka() {
-	.#{$mocka-prefix}-#{$mocka-container} {
-		width: 100%;
-		position: relative;
-		height: 9.5rem;
+@function map-get-inner($map, $submap, $key){
+	@return map-get(map-get($map, $submap),$key);
+}
+
+@function map-has-inner-key($map, $submap, $key){
+	@if map-has-key($map, $submap){
+		@if map-has-key(map-get($map, $submap), $key) {
+			@return true;
+		}
 	}
-	.#{$mocka-prefix}-#{$mocka-media}, .#{$mocka-prefix}-#{$mocka-heading}, .#{$mocka-prefix}-#{$mocka-text} {
+	@return false;
+}
+
+
+@mixin mocka($mocka) {
+	$_prefix: 'mocka' !default;
+	$_container: 'container' !default;
+	$_media: 'media' !default;
+	$_heading: 'heading' !default;
+	$_text: 'text' !default;
+	$_background: #bdbdbd !default;
+
+	$_container-width: 100% !default;
+	$_container-height: 9.5rem !default;
+
+	$_media-top: 0.5rem !default;
+	$_media-left: 0.5rem !default;
+	$_media-width: 4rem !default;
+	$_media-height: 4rem !default;
+	$_media-border-radius: 0 !default;
+
+	$_heading-top: 1.125rem !default;
+	$_heading-left: 5rem !default;
+	$_heading-width-base: 100% !default;
+	$_heading-width-offset: 1rem !default;
+	$_heading-height: 0.875rem !default;
+	$_heading-border-radius: 0 !default;
+	$_subheading-top: 1.5rem !default;
+	$_subheading-width: 85% !default;
+	$_subheading-height: 0.875rem !default;
+	$_subheading-border-radius: 0 !default;
+
+	$_text-top: 5.25rem !default;
+	$_text-left: 0.5rem !default;
+	$_text-line1-width-base: 85% !default;
+	$_text-line1-width-offset: 1rem !default;
+	$_text-height: 0.75rem !default;
+	$_text-line2-top: 1.25rem !default;
+	$_text-line2-width-base: 120% !default;
+	$_text-line2-width-offset: 1rem !default;
+	$_text-line3-top: 2.5rem !default;
+	$_text-line3-width-base: 90% !default;
+	$_text-line3-width-offset:0 !default;
+	$_text-border-radius: 0 !default;
+
+
+	@if map-has-key($mocka, prefix){
+		$_prefix: map-get($mocka, prefix);
+	}
+	@if map-has-inner-key($mocka, container, name){
+		$_container: map-get-inner($mocka, container, name);
+	}
+	@if map-has-inner-key($mocka, media, name){
+		$_media: map-get-inner($mocka, media, name);
+	}
+	@if map-has-inner-key($mocka, heading, name){
+		$_heading: map-get-inner($mocka, heading, name);
+	}
+	@if map-has-inner-key($mocka, text, name){
+		$_text: map-get-inner($mocka, text, name);
+	}
+	@if map-has-key($mocka, background){
+		$_background: map-get($mocka, background);
+	}
+
+	@if map-has-inner-key($mocka, container, width){
+		$_container-width: map-get-inner($mocka, container, width);
+	}
+	@if map-has-inner-key($mocka, container, height){
+		$_container-height: map-get-inner($mocka, container, height);
+	}
+
+	@if map-has-inner-key($mocka, media, top){
+		$_media-top: map-get-inner($mocka, media, top);
+	}
+	@if map-has-inner-key($mocka, media, left){
+		$_media-left: map-get-inner($mocka, media, left);
+	}
+	@if map-has-inner-key($mocka, media, width){
+		$_media-width: map-get-inner($mocka, media, width);
+	}
+	@if map-has-inner-key($mocka, media, height){
+		$_media-height: map-get-inner($mocka, media, height);
+	}
+	@if map-has-inner-key($mocka, media, border-radius){
+		$_media-border-radius: map-get-inner($mocka, media, border-radius);
+	}
+
+	@if map-has-inner-key($mocka, heading, top){
+		$_heading-top: map-get-inner($mocka, heading, top);
+	}
+	@if map-has-inner-key($mocka, heading, left){
+		$_heading-left: map-get-inner($mocka, heading, left);
+	}
+	@if map-has-inner-key($mocka, heading, width-base){
+		$_heading-width-base: map-get-inner($mocka, heading, width-base);
+	}
+	@if map-has-inner-key($mocka, heading, width-offset){
+		$_heading-width-offset: map-get-inner($mocka, heading, width-offset);
+	}
+	@if map-has-inner-key($mocka, heading, height){
+		$_heading-height: map-get-inner($mocka, heading, height);
+	}
+	@if map-has-inner-key($mocka, heading, border-radius){
+		$_heading-border-radius: map-get-inner($mocka, heading, border-radius);
+	}
+	@if map-has-inner-key($mocka, subheading, top){
+		$_subheading-left: map-get-inner($mocka, subheading, top);
+	}
+	@if map-has-inner-key($mocka, subheading, width){
+		$_subheading-width: map-get-inner($mocka, subheading, width);
+	}
+	@if map-has-inner-key($mocka, subheading, height){
+		$_subheading-height: map-get-inner($mocka, subheading, height);
+	}
+	@if map-has-inner-key($mocka, subheading, border-radius){
+		$_subheading-border-radius: map-get-inner($mocka, subheading, border-radius);
+	}
+
+
+	.#{$_prefix}-#{$_container} {
+		width: $_container-width;
+		position: relative;
+		height: $_container-height;
+	}
+
+	.#{$_prefix}-#{$_media}, .#{$_prefix}-#{$_heading}, .#{$_prefix}-#{$_text} {
 		&, &:before, &:after {
 			position: absolute;
-		  background: #bdbdbd;
+		  background: $_background;
 		}
 	}
 
-	.#{$mocka-prefix}-#{$mocka-media} {
-		top: $mocka-media-top;
-		left: $mocka-media-left;
-		width: $mocka-media-width;
-		height: $mocka-media-height;
+	.#{$_prefix}-#{$_media} {
+		@if $_media-top != 0 {
+			top: $_media-top;
+		}
+		@if $media-left != 0 {
+			left: $_media-left;
+		}
+		width: $_media-width;
+		height: $_media-height;
+		@if $_media-border-radius != 0 {
+			border-radius: $_media-border-radius;
+		}
 		&:before, &:after {
-			top: $mocka-dots-top;
-			border-radius: $mocka-dots-border-radius;
-			background: $mocka-dots-background;
-			height: $mocka-dots-height;
-			width: $mock-dots-width;
+			top: $_dots-top;
+			border-radius: $_dots-border-radius;
+			background: $_dots-background;
+			height: $_dots-height;
+			width: $_dots-width;
 			content: '';
 		}
 		&:before {
-			left: $mocka-dots-left-margin;
+			left: $_dots-left-margin;
 			animation: mocka-dot-a 1.8s ease infinite;
 		}
 		&:after {
@@ -34,47 +171,99 @@
 			animation: mocka-dot-c 1.8s ease infinite;
 		}
 	}
-	.#{$mocka-prefix}-#{$mocka-heading} {
-		left: $mocka-heading-left;
-		top: $mocka-heading-top;
-		width: calc(100% - $mocka-heading-offset);
-		&, &:before {
-			height: $mocka-heading-height;
+	.#{$_prefix}-#{$_heading} {
+		@if $_heading-top != 0 {
+			top: $_heading-top;
+		}
+		@if $_heading-top != 0 {
+			left: $_heading-left;
+		}
+		@if $_heading-width-offset != 0 {
+			width: calc($_heading-width-base - $_heading-width-offset);
+		}
+		@else {
+			width: $_heading-width-base;
+		}
+		@if $_heading-height == $_subheading-height and $_heading-border-radius == $_subheading-border-radius {
+			&, &:before {
+				height: $_heading-height;
+				@if $_heading-border-radius != 0 {
+					border-radius: $_heading-border-radius;
+				}
+			}
+		}
+		@else if $_heading-height == $_subheading-height {
+			@if $_heading-border-radius != 0 {
+				border-radius: $_heading-border-radius;
+			}
+			&, &:before {
+				height: $_heading-height;
+			}
+			&:before {
+				@if $_subheading-border-radius != 0 {
+					border-radius: $_subheading-border-radius;
+				}
+			}
+		}
+		@else if $_heading-border-radius == $_subheading-border-radius {
+			height: $_heading-height;
+			&, &:before {
+				@if $_heading-border-radius != 0 {
+					border-radius: $_heading-border-radius;
+				}
+			}
+			&:before {
+				height: $_subheading-height;
+			}
+		}
+		@else {
+			height: $_heading-height;
+			@if $_heading-border-radius != 0 {
+				border-radius: $_heading-border-radius;
+			}
+			&:before {
+				height: $_subheading-height;
+				@if $_sub-heading-border-radius != 0 {
+					border-radius: $_sub-heading-border-radius;
+				}
+			}
 		}
 		&:before, &:after {
 			content: '';
 		}
 		&:before {
-			width: $mocka-heading-subline-width;
-			top: $mocka-heading-subline-top;
+			@if $_subheading-top != 0 {
+				top: $_subheading-top;
+			}
+			width: $_subheading-width;
 		}
 		&:after {
 			top: 1.375rem;
 	    left: -2.75rem;
-			border-radius: $mocka-dots-border-radius;
-			background: $mocka-dots-background;
-			height: $mocka-dots-height;
-			width: $mock-dots-width;
+			border-radius: $_dots-border-radius;
+			background: $_dots-background;
+			height: $_dots-height;
+			width: $_dots-width;
 	    animation: mocka-dot-b 1.8s ease infinite;
 		}
 	}
-	.#{$mocka-prefix}-#{$mocka-text} {
-		top: $mocka-text-top;
-		left: $mocka-text-left;
-		width: calc(85% - $mocka-text-paddings);
+	.#{$_prefix}-#{$_text} {
+		top: $_text-top;
+		left: $_text-left;
+		width: calc(85% - $_text-paddings);
 		&, &:before, &:after {
-			height: $mocka-text-height;
+			height: $_text-height;
 		}
 		&:before, &:after {
 			content: '';
 		}
 		&:before {
 			top: 1.25rem;
-			width: calc(120% - $mocka-text-paddings);
+			width: calc(120% - $_text-paddings);
 		}
 		&:after {
 			top: 2.5rem;
-			width: calc(95% -  - $mocka-text-paddings);
+			width: 90%;
 		}
 	}
 }
