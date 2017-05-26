@@ -4,7 +4,8 @@ Simple, elegant content placeholder
 ![Mocka](/docs/demo.gif)
 
 ```
-npm install mocka-placeholder```
+npm install mocka-placeholder
+```
 
 ## Introduction
 
