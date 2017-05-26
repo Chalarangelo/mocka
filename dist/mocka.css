@@ -78,7 +78,7 @@
 
 .mocka-media, .mocka-media:before, .mocka-media:after, .mocka-heading, .mocka-heading:before, .mocka-heading:after, .mocka-text, .mocka-text:before, .mocka-text:after {
   position: absolute;
-  background: #bdbdbd;
+  background: #c9c9c9;
 }
 
 .mocka-media {
@@ -93,7 +93,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 1rem;
-  background: #616161;
+  background: #7a7a7a;
   content: '';
 }
 
@@ -134,7 +134,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 1rem;
-  background: #616161;
+  background: #7a7a7a;
   -webkit-animation: mocka-dot-c 1.8s ease infinite;
   animation: mocka-dot-c 1.8s ease infinite;
 }

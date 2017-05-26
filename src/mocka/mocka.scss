@@ -51,7 +51,7 @@ $mocka: (
 		space-around: 0.75rem,
 		space-between: 0.5rem,
 		border-radius: 1rem,
-		background: #616161,
+		background: #7a7a7a,
 	),
 	animation: (
 		name: 'dot',
@@ -62,6 +62,6 @@ $mocka: (
 		dot2-y-offset: -0.4375rem,
 		dot3-y-offset: -0.3125rem
 	),
-	background: #bdbdbd
+	background: #c9c9c9
 );
 @include mocka($mocka);
