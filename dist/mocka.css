@@ -71,9 +71,12 @@
 }
 
 .mocka-container {
-  width: 100%;
   position: relative;
+  width: 20rem;
   height: 9.5rem;
+  background: #fafafa;
+  border-radius: 0.125rem;
+  border: 0.0625rem solid #acacac;
 }
 
 .mocka-media, .mocka-media:before, .mocka-media:after, .mocka-heading, .mocka-heading:before, .mocka-heading:after, .mocka-text, .mocka-text:before, .mocka-text:after {

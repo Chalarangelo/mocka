@@ -1,8 +1,8 @@
-
+// Gets the value of a key in a submap in a map
 @function map-get-inner($map, $submap, $key){
 	@return map-get(map-get($map, $submap),$key);
 }
-
+// Checks if the submap of a map has the specified key
 @function map-has-inner-key($map, $submap, $key){
 	@if map-has-key($map, $submap){
 		@if map-has-key(map-get($map, $submap), $key) {
@@ -11,9 +11,9 @@
 	}
 	@return false;
 }
-
-
+// Main mocka mixin
 @mixin mocka($mocka) {
+	// Set variable defaults
 	$_prefix: 'mocka' !default;
 	$_container: 'container' !default;
 	$_media: 'media' !default;
@@ -22,8 +22,11 @@
 	$_animation: 'dot' !default;
 	$_background: #c9c9c9 !default;
 
-	$_container-width: 100% !default;
+	$_container-width: 20rem !default;
 	$_container-height: 9.5rem !default;
+	$_container-background: #fafafa !default;
+	$_container-border-radius: 0.125rem !default;
+	$_container-border: 0.0625rem solid #acacac !default;
 
 	$_media-top: 0.5rem !default;
 	$_media-left: 0.5rem !default;
@@ -71,6 +74,7 @@
 	$_animation_dot2-y-offset: -0.4375rem !default;
 	$_animation_dot3-y-offset: -0.3125rem !default;
 
+	// Update variables based on the map provided
 	@if map-has-key($mocka, prefix){
 		$_prefix: map-get($mocka, prefix);
 	}
@@ -98,6 +102,15 @@
 	}
 	@if map-has-inner-key($mocka, container, height){
 		$_container-height: map-get-inner($mocka, container, height);
+	}
+	@if map-has-inner-key($mocka, container, background){
+		$_container-background: map-get-inner($mocka, container, background);
+	}
+	@if map-has-inner-key($mocka, container, border-radius){
+		$_container-border-radius: map-get-inner($mocka, container, border-radius);
+	}
+	@if map-has-inner-key($mocka, container, border){
+		$_container-border: map-get-inner($mocka, container, border);
 	}
 
 	@if map-has-inner-key($mocka, media, top){
@@ -225,6 +238,7 @@
 		$_animation-dot3-y-offset: map-get-inner($mocka, animation, dot3-y-offset);
 	}
 
+	// Create animations for the loading dots
 	@-webkit-keyframes #{$_prefix}-#{$_animation}-a {
 	  8% 	{	-webkit-transform: translateY(0); }
 	  22% {	-webkit-transform: translateY($_animation-dot1-y-offset); }
@@ -261,10 +275,20 @@
 	  92% {					transform: translateY(0); }
 	}
 
+	// Create styles for all the required parts of mocka
 	.#{$_prefix}-#{$_container} {
-		width: $_container-width;
 		position: relative;
+		width: $_container-width;
 		height: $_container-height;
+		@if $_container-background != transparent {
+			background: $_container-background;
+		}
+		@if $_container-border-radius != 0 {
+			border-radius: $_container-border-radius;
+		}
+		@if $_container-border != 0 {
+			border: $_container-border;
+		}
 	}
 
 	.#{$_prefix}-#{$_media}, .#{$_prefix}-#{$_heading}, .#{$_prefix}-#{$_text} {

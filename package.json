@@ -1,0 +1,31 @@
+{
+  "name": "mocka-placeholder",
+  "version": "1.0.0",
+  "description": "Simple, elegant content placeholder",
+  "main": "dist/mocka.min.css",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chalarangelo/mocka.git"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "placeholder",
+		"mocka"
+  ],
+  "author": "Angelos Chalaris (Chalarangelo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chalarangelo/mocka/issues"
+  },
+  "homepage": "https://chalarangelo.github.io/mocka/"
+}
