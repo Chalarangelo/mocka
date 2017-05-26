@@ -15,10 +15,52 @@ $mocka: (
 		border-radius: 0
 	),
 	heading: (
-		name: 'heading'
+		name: 'heading',
+		top: 1.125rem,
+		left: 5rem,
+		width-base: 100%,
+		width-offset: 5.5rem,
+		height: 0.875rem,
+		border-radius: 0
+	),
+	subheading: (
+		top: 1.5rem,
+		width: 85%,
+		height: 0.875rem,
+		border-radius: 0
 	),
 	text: (
-		name: 'text'
+		name: 'text',
+		top: 5.25rem,
+		left: 0.5rem,
+		line1-width-base: 85%,
+		line1-width-offset: 1rem,
+		height: 0.75rem,
+		line2-top: 1.25rem,
+		line2-width-base: 120%,
+		line2-width-offset: 1rem,
+		line3-top: 2.5rem,
+		line3-width-base: 90%,
+		line3-width-offset: 0,
+		border-radius: 0
+	),
+	dots: (
+		top: 2rem,
+		height: 0.5rem,
+		width: 0.5rem,
+		space-around: 0.75rem,
+		space-between: 0.5rem,
+		border-radius: 1rem,
+		background: #616161,
+	),
+	animation: (
+		name: 'dot',
+		duration: 1.8s,
+		timing-function: ease,
+		iteration-count: infinite,
+		dot1-y-offset: -0.3125rem,
+		dot2-y-offset: -0.4375rem,
+		dot3-y-offset: -0.3125rem
 	),
 	background: #bdbdbd
 );

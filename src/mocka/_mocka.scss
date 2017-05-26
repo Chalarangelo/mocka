@@ -19,6 +19,7 @@
 	$_media: 'media' !default;
 	$_heading: 'heading' !default;
 	$_text: 'text' !default;
+	$_animation: 'dot' !default;
 	$_background: #bdbdbd !default;
 
 	$_container-width: 100% !default;
@@ -54,6 +55,21 @@
 	$_text-line3-width-offset:0 !default;
 	$_text-border-radius: 0 !default;
 
+	$_dots-top: 2rem !default;
+	$_dots-height: 0.5rem !default;
+	$_dots-width: 0.5rem !default;
+	$_dots-space-around: 0.75rem !default;
+	$_dots-space-between: 0.5rem !default;
+	$_dots-border-radius: 1rem !default;
+	$_dots-background: #616161 !default;
+
+	$_animation_name: 'dot' !default;
+	$_animation-duration: 1.8s !default;
+	$_animation-timing-function: ease !default;
+	$_animation-iteration-count: infinite !default;
+	$_animation_dot1-y-offset: -0.3125rem !default;
+	$_animation_dot2-y-offset: -0.4375rem !default;
+	$_animation_dot3-y-offset: -0.3125rem !default;
 
 	@if map-has-key($mocka, prefix){
 		$_prefix: map-get($mocka, prefix);
@@ -69,6 +85,9 @@
 	}
 	@if map-has-inner-key($mocka, text, name){
 		$_text: map-get-inner($mocka, text, name);
+	}
+	@if map-has-inner-key($mocka, animation, name){
+		$_animation: map-get-inner($mocka, animation, name);
 	}
 	@if map-has-key($mocka, background){
 		$_background: map-get($mocka, background);
@@ -128,6 +147,119 @@
 		$_subheading-border-radius: map-get-inner($mocka, subheading, border-radius);
 	}
 
+	@if map-has-inner-key($mocka, text, top){
+		$_text-top: map-get-inner($mocka, text, top);
+	}
+	@if map-has-inner-key($mocka, text, left){
+		$_text-left: map-get-inner($mocka, text, left);
+	}
+	@if map-has-inner-key($mocka, text, line1-width-base){
+		$_text-line1-width-base: map-get-inner($mocka, text, line1-width-base);
+	}
+	@if map-has-inner-key($mocka, text, line1-width-offset){
+		$_text-line1-width-offset: map-get-inner($mocka, text, line1-width-offset);
+	}
+	@if map-has-inner-key($mocka, text, height){
+		$_text-height: map-get-inner($mocka, text, height);
+	}
+	@if map-has-inner-key($mocka, text, line2-top){
+		$_text-line2-top: map-get-inner($mocka, text, line2-top);
+	}
+	@if map-has-inner-key($mocka, text, line2-width-base){
+		$_text-line2-width-base: map-get-inner($mocka, text, line2-width-base);
+	}
+	@if map-has-inner-key($mocka, text, line2-width-offset){
+		$_text-line2-width-offset: map-get-inner($mocka, text, line2-width-offset);
+	}
+	@if map-has-inner-key($mocka, text, line3-top){
+		$_text-line3-top: map-get-inner($mocka, text, line3-top);
+	}
+	@if map-has-inner-key($mocka, text, line3-width-base){
+		$_text-line3-width-base: map-get-inner($mocka, text, line3-width-base);
+	}
+	@if map-has-inner-key($mocka, text, line3-width-offset){
+		$_text-line3-width-offset: map-get-inner($mocka, text, line3-width-offset);
+	}
+	@if map-has-inner-key($mocka, text, border-radius){
+		$_text-border-radius: map-get-inner($mocka, text, border-radius);
+	}
+
+	@if map-has-inner-key($mocka, dots, top){
+		$_dots-top: map-get-inner($mocka, dots, top);
+	}
+	@if map-has-inner-key($mocka, dots, height){
+		$_dots-height: map-get-inner($mocka, dots, height);
+	}
+	@if map-has-inner-key($mocka, dots, width){
+		$_dots-width: map-get-inner($mocka, dots, width);
+	}
+	@if map-has-inner-key($mocka, dots, space-around){
+		$_dots-space-around: map-get-inner($mocka, dots, space-around);
+	}
+	@if map-has-inner-key($mocka, dots, space-between){
+		$_dots-space-between: map-get-inner($mocka, dots, space-between);
+	}
+	@if map-has-inner-key($mocka, dots, border-radius){
+		$_dots-border-radius: map-get-inner($mocka, dots, border-radius);
+	}
+	@if map-has-inner-key($mocka, dots, background){
+		$_dots-background: map-get-inner($mocka, dots, background);
+	}
+
+	@if map-has-inner-key($mocka, animation, duration){
+		$_animation-duration: map-get-inner($mocka, animation, duration);
+	}
+	@if map-has-inner-key($mocka, animation, timing-function){
+		$_animation-timing-function: map-get-inner($mocka, animation, timing-function);
+	}
+	@if map-has-inner-key($mocka, animation, iteration-count){
+		$_animation-iteration-count: map-get-inner($mocka, animation, iteration-count);
+	}
+	@if map-has-inner-key($mocka, animation, dot1-y-offset){
+		$_animation-dot1-y-offset: map-get-inner($mocka, animation, dot1-y-offset);
+	}
+	@if map-has-inner-key($mocka, animation, dot2-y-offset){
+		$_animation-dot2-y-offset: map-get-inner($mocka, animation, dot2-y-offset);
+	}
+	@if map-has-inner-key($mocka, animation, dot3-y-offset){
+		$_animation-dot3-y-offset: map-get-inner($mocka, animation, dot3-y-offset);
+	}
+
+	@-webkit-keyframes #{$_prefix}-#{$_animation}-a {
+	  8% 	{	-webkit-transform: translateY(0); }
+	  22% {	-webkit-transform: translateY($_animation-dot1-y-offset); }
+	  36% {	-webkit-transform: translateY(0); }
+	}
+
+	@keyframes #{$_prefix}-#{$_animation}-a {
+	  8% 	{					transform: translateY(0); }
+	  22%	{ 				transform: translateY($_animation-dot1-y-offset); }
+	  36% {					transform: translateY(0); }
+	}
+
+	@-webkit-keyframes #{$_prefix}-#{$_animation}-b {
+	  36% {	-webkit-transform: translateY(0); }
+	  50% {	-webkit-transform: translateY($_animation-dot2-y-offset); }
+	  64% {	-webkit-transform: translateY(0); }
+	}
+
+	@keyframes #{$_prefix}-#{$_animation}-b {
+	  36% {					transform: translateY(0); }
+	  50% {					transform: translateY($_animation-dot2-y-offset); }
+	  64% {					transform: translateY(0); }
+	}
+
+	@-webkit-keyframes #{$_prefix}-#{$_animation}-c {
+	  64% {	-webkit-transform: translateY(0); }
+	  78% {	-webkit-transform: translateY($_animation-dot3-y-offset); }
+	  92% {	-webkit-transform: translateY(0); }
+	}
+
+	@keyframes #{$_prefix}-#{$_animation}-c {
+	  64% {					transform: translateY(0); }
+	  78% {					transform: translateY($_animation-dot3-y-offset); }
+	  92% {					transform: translateY(0); }
+	}
 
 	.#{$_prefix}-#{$_container} {
 		width: $_container-width;
@@ -146,7 +278,7 @@
 		@if $_media-top != 0 {
 			top: $_media-top;
 		}
-		@if $media-left != 0 {
+		@if $_media-left != 0 {
 			left: $_media-left;
 		}
 		width: $_media-width;
@@ -155,20 +287,26 @@
 			border-radius: $_media-border-radius;
 		}
 		&:before, &:after {
-			top: $_dots-top;
-			border-radius: $_dots-border-radius;
-			background: $_dots-background;
-			height: $_dots-height;
+			@if $_dots-top != 0 {
+				top: $_dots-top;
+			}
 			width: $_dots-width;
+			height: $_dots-height;
+			@if $_dots-border-radius != 0 {
+				border-radius: $_dots-border-radius;
+			}
+			background: $_dots-background;
 			content: '';
 		}
 		&:before {
-			left: $_dots-left-margin;
-			animation: mocka-dot-a 1.8s ease infinite;
+			left: $_dots-space-around;
+			-webkit-animation: #{$_prefix}-#{$_animation}-a #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
+			animation: #{$_prefix}-#{$_animation}-a #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
 		}
 		&:after {
-			left: 2.75rem;
-			animation: mocka-dot-c 1.8s ease infinite;
+			left: $_dots-space-around + $_dots-width + $_dots-space-between;
+			-webkit-animation: #{$_prefix}-#{$_animation}-b #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
+			animation: #{$_prefix}-#{$_animation}-b #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
 		}
 	}
 	.#{$_prefix}-#{$_heading} {
@@ -179,7 +317,7 @@
 			left: $_heading-left;
 		}
 		@if $_heading-width-offset != 0 {
-			width: calc($_heading-width-base - $_heading-width-offset);
+			width: calc(#{$_heading-width-base} - #{$_heading-width-offset});
 		}
 		@else {
 			width: $_heading-width-base;
@@ -238,19 +376,31 @@
 			width: $_subheading-width;
 		}
 		&:after {
-			top: 1.375rem;
-	    left: -2.75rem;
-			border-radius: $_dots-border-radius;
-			background: $_dots-background;
-			height: $_dots-height;
+			top: $_dots-top + $_media-top - $_heading-top;
+	    left: -$_heading-left + $_media-width + $_media-left - $_dots-space-around - $_dots-width;
 			width: $_dots-width;
-	    animation: mocka-dot-b 1.8s ease infinite;
+			height: $_dots-height;
+			@if $_dots-border-radius != 0 {
+				border-radius: $_dots-border-radius;
+			}
+			background: $_dots-background;
+	    -webkit-animation: #{$_prefix}-#{$_animation}-c #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
+	    animation: #{$_prefix}-#{$_animation}-c #{$_animation_duration} #{$_animation-timing-function} #{$_animation-iteration-count};
 		}
 	}
 	.#{$_prefix}-#{$_text} {
-		top: $_text-top;
-		left: $_text-left;
-		width: calc(85% - $_text-paddings);
+		@if $_text-top != 0 {
+			top: $_text-top;
+		}
+		@if $_text-left != 0 {
+			left: $_text-left;
+		}
+		@if $_text-line1-width-offset != 0 {
+			width: calc(#{$_text-line1-width-base} - #{$_text-line1-width-offset});
+		}
+		@else {
+			width: $_text-line1-width-base;
+		}
 		&, &:before, &:after {
 			height: $_text-height;
 		}
@@ -258,48 +408,26 @@
 			content: '';
 		}
 		&:before {
-			top: 1.25rem;
-			width: calc(120% - $_text-paddings);
+			@if $_text-line2-top != 0 {
+				top: $_text-line2-top;
+			}
+			@if $_text-line2-width-offset != 0 {
+				width: calc(#{$_text-line2-width-base} - #{$_text-line2-width-offset});
+			}
+			@else {
+				width: $_text-line2-width-base;
+			}
 		}
 		&:after {
-			top: 2.5rem;
-			width: 90%;
+			@if $_text-line3-top != 0 {
+				top: $_text-line3-top;
+			}
+			@if $_text-line3-width-offset != 0 {
+				width: calc(#{$_text-line3-width-base} - #{$_text-line3-width-offset});
+			}
+			@else {
+				width: $_text-line3-width-base;
+			}
 		}
 	}
-}
-/* TODO: Add -webkit- keyframes */
-@keyframes mocka-dot-a {
-  8% {
-    transform: translateY(0rem);
-  }
-  22% {
-    transform: translateY(-0.3125rem);
-  }
-  36% {
-    transform: translateY(0rem);
-  }
-}
-
-@keyframes mocka-dot-b {
-  36% {
-    transform: translateY(0rem);
-  }
-  50% {
-    transform: translateY(-0.4375rem);
-  }
-  64% {
-    transform: translateY(0rem);
-  }
-}
-
-@keyframes mocka-dot-c {
-  64% {
-    transform: translateY(0rem);
-  }
-  78% {
-    transform: translateY(-0.3125rem);
-  }
-  92% {
-    transform: translateY(0rem);
-  }
 }
