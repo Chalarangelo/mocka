@@ -1,6 +1,6 @@
 {
   "name": "mocka-placeholder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple, elegant content placeholder",
   "main": "dist/mocka.min.css",
   "directories": {
@@ -20,7 +20,7 @@
     "css",
     "sass",
     "placeholder",
-		"mocka"
+    "mocka"
   ],
   "author": "Angelos Chalaris (Chalarangelo)",
   "license": "MIT",
